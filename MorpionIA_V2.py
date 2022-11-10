@@ -82,7 +82,7 @@ def check_X(A,B,C):
    else:
     compteur+=1
     if compteur==160:
-        egalité()
+        egalite()
         rejouer()
 
 
@@ -104,7 +104,7 @@ def check_O(A,B,C) :
     else:
         compteur+=1
         if compteur==160:
-            egalité()
+            egalite()
             rejouer()
 
 
@@ -220,7 +220,7 @@ def clique(b):
         messagebox.showerror("Morpion", "Cette case est déjà utilisée \nChoisis en une autre ...")
 
 
-def egalité():
+def egalite():
     global compteur
     compteur=0
     messagebox.showerror("egalité", "Tu ne gagneras jamais :)")
