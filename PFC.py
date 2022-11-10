@@ -3,6 +3,18 @@ import webbrowser
 import time
 import os
 
+
+def menu():
+    jeu = int(input("\nChoissez le mode de jeu\n 1:Mode normal \n 2:Mode impossible (•̀ᴗ•́ )و ̑̑ \n 3:Quitter \n"))
+    if jeu == 1:
+        pfcnormal()
+    if jeu == 2:
+        impossible_mode()
+    if jeu == 3:
+        return
+    else:
+        print("\n\n\nCe mode est en cours de développement..../!\ \n")
+        return menu()
 def pfcnormal():
     points1 = 0
     points2 = 0
@@ -17,7 +29,7 @@ def pfcnormal():
 
         if cpt == manches-1 and points1 == points2 and manches >=5:
             os.system('clear')
-            time.sleep(1.5)
+            time.sleep(1.2)
             print("\n \n \n Trou noir \n \n \n")
             time.sleep(3)
             print("\n \n Allô.. ? Vous êtes toujours là ? \n \n")
@@ -32,12 +44,11 @@ def pfcnormal():
             print("\n Egalité")
         if coup == "Puit" or coup =="Puits" or coup == "Pui" or coup =="Volcan" or coup == "puit":
             os.system('clear')
-            print('\n \n Tu essayes quand même pas de tricher ?? \n')
+            print("\n \n Tu n'essayes quand même pas de tricher ?? \n")
             time.sleep(1.2)
-            
             webbrowser.open('https://www.youtube.com/watch?v=xvFZjo5PgG0')
-	    print("\n Hop un  rick roll bien mérité\n")
-	    menu()
+            print("\n Hop un  rick roll bien mérité\n")
+            menu()
 
         if coup == "Pierre" and coup2 == "Feuille":
             points2 = points2 + 1
@@ -140,16 +151,6 @@ def impossible_mode():
     else:
         return
 
-def menu():
-    jeu = int(input("\nChoissez le mode de jeu\n 1:Mode normal \n 2:Mode impossible (•̀ᴗ•́ )و ̑̑ \n 3:Quitter \n"))
-    if jeu == 1:
-        pfcnormal()
-    if jeu == 2:
-        impossible_mode()
-    if jeu == 3:
-        return
-    else:
-        print("\n\n\nCe mode est en cours de développement..../!\ \n")
-        return menu()
+
 
 menu()
