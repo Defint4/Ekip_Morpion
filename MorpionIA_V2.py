@@ -8,6 +8,7 @@ window.configure(bg="black")
 window.resizable(height=False,width=False)
 
 
+
 window.title("Morpion")
 labelf=Label(window,text="Morpion by Ekip",bg="black",fg="orange")
 labels=font.Font(size=19)
@@ -15,6 +16,11 @@ labelf['font']=labels
 f=font.Font(size=110)
 labelf.grid(row=0,column=2,pady=1,padx=1)
 
+labelc=Label(window,text="joueur : 0 ",bg="black",fg="white")
+labeld=font.Font(size=15)
+labelc['font']=labeld
+labelc.grid(row=0,column=1,pady=1,padx=1)
+text2="joueur"
 stop=False
 clicked=True
 pierre=True
@@ -26,6 +32,7 @@ ciseaux=True
 compteur=0
 points1=0
 points2=0
+
 
 
 ## Désactiver tout les bouttons
@@ -64,18 +71,18 @@ def gagne(): # modifier
 
 
 def check_X(A,B,C):
-   global points1, compteur, stop
-   labelf=Label(window,text="Joueur : "+str(points1),bg="black",fg="white")
-   labels=font.Font(size=15)
-   labelf['font']=labels
-   f=font.Font(size=110)
-   labelf.grid(row=0,column=1,pady=1,padx=1)
+   global points1, compteur, stop, text2
    if A["text"]+B["text"]+C["text"]=="XXX":
     A.config(bg="green")
     B.config(bg="green")
     C.config(bg="green")
     stop=True
-    points1+=1
+    if text2=="Sylvain" or text2=="sylvain":
+        points1+=15
+    if text2=="Ekip" or text2=="ekip":
+        points1+=3
+    else:
+        points1+=1
     messagebox.showinfo(title=None,message="Fin du jeu ! Bravo, tu as gagné la partie !")
     disbld_buttons()
     compteur=0
@@ -231,8 +238,11 @@ def egalite():
 
 def rejouer():
 
-    global b1,b2,b3,b4,b5,b6,b7,b8,b9,compteur
+    global b1,b2,b3,b4,b5,b6,b7,b8,b9,compteur, text2, points1
     compteur=0
+
+    labelc['text'] =str(text2)+" : "+str(points1)
+
     b1=Button(window,text=" ",height=1,width=2,bg="slate gray",command=lambda : clique(b1))
     b2=Button(window,text=" ",height=1,width=2,bg="slate gray",command=lambda : clique(b2))
     b3=Button(window,text=" ",height=1,width=2,bg="slate gray",command=lambda : clique(b3))
@@ -315,18 +325,33 @@ b8['font']=f
 b9['font']=f
 
 
+
 def exit():
     window.destroy()
 
 quitter=Button(window,text="Quitter",height=2,width=6,bg="slate gray",command=exit)
 replay=Button(window,text="Rejouer",height=2,width=6,bg="slate gray",command=rejouer)
-replay.grid(pady=10,padx=5,column=1,row=5)
-quitter.grid(pady=10,padx=5,column=3,row=5)
+replay.grid(pady=20,padx=5,column=1,row=5)
+quitter.grid(pady=20,padx=5,column=3,row=5)
 ## Affichage du jeu
+labelp=Label(window,text="Nom : ",bg="black",fg="white")
+labelp.grid(row=4,column=2)
+def confirmer():
+    global text2, points1
+    text2=inputtxt.get()
+    if text2=="Sylvain" or text2=="sylvain":
+        messagebox.showinfo(title=None,message="Bonjour à vous maître,\ncela nous fait plaisir de vous revoir\nune bonne note svp ;(")
+    if text2=="ekip" or text2=="Ekip":
+        messagebox.showinfo(title=None,message="   Mes chers fondateurs.\n             Bonjour !\n(J'espère que c'est Matthieu)")
+    if text2=="":
+        text2="Joueur"
+
+    inputtxt.delete("0","end")  
+inputtxt = Entry(window)
+inputtxt.grid(row=5,column=2)
+
+
+bouton=Button(window, text="Confirmer", command=confirmer)
+bouton.grid(row=6,column=2)
 
 window.mainloop()
-
-
-
-
-
