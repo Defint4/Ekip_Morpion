@@ -36,6 +36,8 @@ def pfcnormal():
             time.sleep(1.2)
             
             webbrowser.open('https://www.youtube.com/watch?v=xvFZjo5PgG0')
+	    print("\n Hop un  rick roll bien mérité\n")
+	    menu()
 
         if coup == "Pierre" and coup2 == "Feuille":
             points2 = points2 + 1
